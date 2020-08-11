@@ -30,13 +30,6 @@
     </div>
 </template>
 
-<style scoped>
-    #rss-feed-container {
-        height: 30rem;
-        overflow-y: scroll;
-    }
-</style>
-
 <script>
     import Loader from '../components/Loader';
     import Parser from 'rss-parser';
@@ -50,6 +43,7 @@
     const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
 
     export default {
+        name: 'Home',
         components: {Loader},
         data: () => ({
             loading: false,
@@ -62,24 +56,31 @@
             '$route': 'fetchData'
         },
         methods: {
-             fetchData: function() {
-                 this.loading = true;
+            fetchData: function() {
+                this.loading = true;
 
-                 let urls = [
-                     'http://lorem-rss.herokuapp.com/feed?unit=hour',
-                     'http://lorem-rss.herokuapp.com/feed?unit=minute',
-                     'http://lorem-rss.herokuapp.com/feed?unit=second'
-                 ];
+                let urls = [
+                    'http://lorem-rss.herokuapp.com/feed?unit=hour',
+                    'http://lorem-rss.herokuapp.com/feed?unit=minute',
+                    'http://lorem-rss.herokuapp.com/feed?unit=second'
+                ];
 
-                 for (let url of urls) {
-                     parser.parseURL(CORS_PROXY + url)
-                         .then((feed) => {
-                             this.items.push(...feed.items);
+                for (let url of urls) {
+                    parser.parseURL(CORS_PROXY + url)
+                        .then((feed) => {
+                            this.items.push(...feed.items);
 
-                             this.loading = false;
-                         });
-                 }
+                            this.loading = false;
+                        });
+                }
             }
         }
     };
 </script>
+
+<style scoped>
+    #rss-feed-container {
+        height: 30rem;
+        overflow-y: scroll;
+    }
+</style>

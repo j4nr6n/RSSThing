@@ -8,6 +8,12 @@
     </div>
 </template>
 
+<script>
+    export default {
+        name: 'Loader',
+    }
+</script>
+
 <style scoped>
     #loader {
         margin: 5rem auto;
@@ -82,6 +88,3 @@
         }
     }
 </style>
-
-<script>
-</script>
